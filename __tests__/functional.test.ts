@@ -201,4 +201,64 @@ describe('functional', function () {
       `);
     });
   });
+
+  describe('TypeScript', function () {
+    test('basic lint', async function () {
+      const eslint = createESLint({
+        baseConfig: generateConfig({
+          typescript: true,
+        }),
+      });
+
+      const results = cleanResults(
+        await eslint.lintText(
+          `const str: any = 'foo'
+console.log(str)      
+`,
+          { filePath: 'file.ts' }
+        )
+      );
+
+      expect(results[0].messages).toMatchInlineSnapshot(`
+        Array [
+          Object {
+            "column": 12,
+            "line": 1,
+            "message": "Unexpected any. Specify a different type.",
+            "ruleId": "@typescript-eslint/no-explicit-any",
+          },
+          Object {
+            "column": 23,
+            "line": 1,
+            "message": "Insert \`;\`",
+            "ruleId": "prettier/prettier",
+          },
+          Object {
+            "column": 23,
+            "line": 1,
+            "message": "Missing semicolon.",
+            "ruleId": "semi",
+          },
+          Object {
+            "column": 1,
+            "line": 2,
+            "message": "Unexpected console statement.",
+            "ruleId": "no-console",
+          },
+          Object {
+            "column": 17,
+            "line": 2,
+            "message": "Replace \`······\` with \`;\`",
+            "ruleId": "prettier/prettier",
+          },
+          Object {
+            "column": 17,
+            "line": 2,
+            "message": "Missing semicolon.",
+            "ruleId": "semi",
+          },
+        ]
+      `);
+    });
+  });
 });
