@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component} from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator';
 
 @Component
 export default class ComponentTypescript extends Vue {
@@ -28,6 +28,11 @@ export default class ComponentTypescript extends Vue {
 
   mounted() {
     console.log("Hello world!");
+  }
+
+  @Watch('visible')
+  onVisible(newVal: boolean, oldVal: boolean): void {
+    console.log(newVal, oldVal);
   }
 }
 </script>

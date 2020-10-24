@@ -156,18 +156,6 @@ describe('functional', function () {
             "ruleId": "vue/component-name-in-template-casing",
           },
           Object {
-            "column": 24,
-            "line": 23,
-            "message": "Replace \`}·from·'vue-property-decorator'\` with \`·}·from·'vue-property-decorator';\`",
-            "ruleId": "prettier/prettier",
-          },
-          Object {
-            "column": 55,
-            "line": 23,
-            "message": "Missing semicolon.",
-            "ruleId": "semi",
-          },
-          Object {
             "column": 3,
             "line": 27,
             "message": "Type boolean trivially inferred from a boolean literal, remove type annotation.",
@@ -196,6 +184,18 @@ describe('functional', function () {
             "line": 30,
             "message": "Replace \`\\"Hello·world!\\"\` with \`'Hello·world!'\`",
             "ruleId": "prettier/prettier",
+          },
+          Object {
+            "column": 12,
+            "line": 34,
+            "message": "Expected 'this' to be used by class method 'onVisible'.",
+            "ruleId": "class-methods-use-this",
+          },
+          Object {
+            "column": 5,
+            "line": 35,
+            "message": "Unexpected console statement.",
+            "ruleId": "no-console",
           },
         ]
       `);
