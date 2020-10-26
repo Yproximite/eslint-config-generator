@@ -1,8 +1,8 @@
 import { generateConfig, UserOptions } from '../dist';
 import { ESLintConfig } from './config-generator';
 
-describe('config-generator', function () {
-  test('base configuration', function () {
+describe('Configuration generator', function () {
+  it('should generate the default configuration', function () {
     const userOptions: UserOptions = {};
     const expectedConfig: ESLintConfig = {
       root: true,
@@ -45,7 +45,7 @@ describe('config-generator', function () {
   });
 
   describe('Vue', () => {
-    test('Basic support', function () {
+    it('should generate a configuration with Vue 2 support', function () {
       const userOptions: UserOptions = {
         vue: true,
       };
@@ -99,7 +99,7 @@ describe('config-generator', function () {
       expect(generateConfig(userOptions)).toEqual(expectedConfig);
     });
 
-    test('Different version', function () {
+    it('should generate a configuration with Vue 3 support', function () {
       const userOptions: UserOptions = {
         vue: {
           version: 3,
@@ -155,7 +155,7 @@ describe('config-generator', function () {
       expect(generateConfig(userOptions)).toEqual(expectedConfig);
     });
 
-    test('Different config', function () {
+    it('should generate a configuration with Vue support and preset "config"', function () {
       const userOptions: UserOptions = {
         vue: {
           config: 'essential',
@@ -213,7 +213,7 @@ describe('config-generator', function () {
   });
 
   describe('TypeScript', function () {
-    test('Basic support', function () {
+    it('should generate a configuration with TypeScript support', function () {
       const userOptions: UserOptions = {
         typescript: true,
       };
@@ -294,7 +294,7 @@ describe('config-generator', function () {
       expect(generateConfig(userOptions)).toEqual(expectedConfig);
     });
 
-    test('With Vue support, and automatically enabled .vue files support', function () {
+    it('should generate a configuration with TypeScript and Vue support, and automatically handle .vue files', function () {
       const userOptions: UserOptions = {
         typescript: true,
         vue: true,
@@ -390,7 +390,7 @@ describe('config-generator', function () {
       expect(generateConfig(userOptions)).toEqual(expectedConfig);
     });
 
-    test('With Vue support, and disabled .vue files support', function () {
+    it('should generate a configuration with TypeScript and Vue support, but .vue files are not handled', function () {
       const userOptions: UserOptions = {
         typescript: {
           vueComponents: false,
